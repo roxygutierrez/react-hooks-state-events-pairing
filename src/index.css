@@ -10,3 +10,11 @@ body {
 .App {
   text-align: center;
 }
+
+.comment-user {
+  font-weight: bold;
+}
+
+.comment-total {
+  font-weight: bold;
+}
