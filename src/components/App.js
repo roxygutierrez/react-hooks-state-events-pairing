@@ -1,19 +1,18 @@
 import { useState } from "react";
 import videoData from "../data/video.js";
-import { Comments } from "./Comments.js";
+import VideoContainer from "./VideoContainer.js";
+import CommentContainer from "./CommentContainer.js";
 
-import { Video } from "./Video.js";
 function App() {
-  const [video, setVideo] = useState(videoData); // video is an object
-  const [hideComments, setHideComments] = useState(false);
+  const [video, setVideo] = useState(videoData);
 
-  const increaseUpvotes = () => {
+  const handleUpVotes = () => {
     const newVideo = { ...video };
     ++newVideo.upvotes;
     setVideo(newVideo);
   };
 
-  const increaseDownvotes = () => {
+  const handleDownVotes = () => {
     const newVideo = { ...video };
     ++newVideo.downvotes;
     setVideo(newVideo);
@@ -21,29 +20,15 @@ function App() {
 
   return (
     <div className="App">
-      <Video
+      <VideoContainer
         video={video}
-        handleUpvotes={increaseUpvotes}
-        handleDownvotes={increaseDownvotes}
+        handleUpVotes={handleUpVotes}
+        handleDownVotes={handleDownVotes}
       />
-      <button onClick={() => setHideComments(!hideComments)}>
-        {hideComments ? "Show" : "Hide"} Comments
-      </button>
-      <hr></hr>
-      {hideComments ? "" : <Comments comments={video.comments} />}
+      <br />
+      <CommentContainer video={video} />
     </div>
   );
 }
 
 export default App;
-
-/*
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
-*/
